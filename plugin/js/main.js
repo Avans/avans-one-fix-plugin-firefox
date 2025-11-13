@@ -1,9 +1,5 @@
-import { htmlElement } from './utils.js'
-
 (() => {
-    const POPUP_SELECTOR = ".mbsc-flex-1-1.mbsc-popup-content";
-    const SCHEDULE_SELECTOR = ".mbsc-schedule-event";
-    const LOCATION_SELECTOR = ".calendar-module";
+
 
     const getScheduleElement = (e) => {
         return e.target.closest(SCHEDULE_SELECTOR);
@@ -17,29 +13,48 @@ import { htmlElement } from './utils.js'
         return document.querySelector(POPUP_SELECTOR);
     }
 
+    const createLocationElement = (wrapper, location) => {
+        const e = htmlLocationElement(location);
+        wrapper.appendChild(e);
+    }
+
+
+    const updateLocationElement = (location) => {
+        const e = getLocationText();
+        e.innerText = location;
+    }
+
+    const getLocationText = () => {
+        return document.querySelector(`#${CUSTOM_LOCATION_TEXT}`)
+    }
+
+    const getLocationElement = () => {
+        return document.querySelector(`#${CUSTOM_LOCATION_WRAPPER}`)
+    }
+
     const injectPopup = (popup, location) => {
-        if(!popup){
+
+        if (getLocationElement()) {
+            updateLocationElement(location)
             return
         }
 
-        const t = popup.querySelector(".calender-item-details-wrapper")
+        if (!popup) {
+            console.error('no popup found');
+            return;
+        }
 
-        console.log(t)
-
-        const e = htmlElement(location)
-
-        console.log(e)
+        createLocationElement(popup.querySelector(".calender-item-details-wrapper"), location)
     }
 
     document.addEventListener("click", e => {
         const event = getScheduleElement(e);
-        if (!event) {
-            return 
-        }
- 
-        const p = getPopup();
 
-        injectPopup(p, getCalenderLocation(event));
+        if (!event) {
+            return;
+        }
+        
+        injectPopup(getPopup(), getCalenderLocation(event));
     });
 
     console.log("Loaded Avans one fix extention")
