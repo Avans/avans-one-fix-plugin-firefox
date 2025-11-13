@@ -13,7 +13,7 @@ function htmlLocationElement(location) {
       </svg>
     </span>
     <div>
-      <p class="font-body-md" id=${CUSTOM_LOCATION_TEXT} >${location}</p>
+      <p class="font-body-md ${ location == NO_LOCATION_ERROR ? ERROR_TEXT_CLASS : '' }" id=${CUSTOM_LOCATION_TEXT} >${location}</p>
     </div>
   `;
     return wrapper;
