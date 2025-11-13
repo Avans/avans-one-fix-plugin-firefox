@@ -6,6 +6,15 @@
   "icons": {
     "48": "content/avans-logo.png"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "NotDetective-AOF-1-1",
+      "data_collection_permissions": {
+        "required": ["websiteActivity", "websiteContent"],
+        "optional": []
+      }
+    }
+  },
   "content_scripts": [
     {
       "matches": ["*://*.avans.one/*"],
