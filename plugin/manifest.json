@@ -10,7 +10,7 @@
     {
       "matches": ["*://*.avans.one/*"],
       "css": ["css/main.css"],
-      "js": ["js/main.js", "js/constant.js", "js/utils.js"],
+      "js": ["js/main.js", "js/constant.js", "js/LocationUtils.js"],
       "run_at": "document_idle"
     }
   ]
