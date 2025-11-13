@@ -1,55 +1,4 @@
 const getScheduleElement = (e) => {
-  return e.target.closest(SCHEDULE_SELECTOR);
-}
-
-const getCalenderLocation = (event) => {
-  return event.querySelector(LOCATION_SELECTOR)?.innerText || NO_LOCATION_ERROR;
-}
-
-const getPopup = () => {
-  return document.querySelector(POPUP_SELECTOR);
-}
-
-const createLocationElement = (wrapper, location) => {
-  const e = htmlLocationElement(location);
-  wrapper.appendChild(e);
-}
-
-const updateLocationElement = (location) => {
-  const e = getLocationText();
-  if (location == NO_LOCATION_ERROR && !e.classList.contains(ERROR_TEXT_CLASS)) {
-    e.classList.add(ERROR_TEXT_CLASS);
-  } else if (location != NO_LOCATION_ERROR) {
-    e.classList.remove(ERROR_TEXT_CLASS)
-  }
-  e.innerText = location;
-}
-
-const getLocationText = () => {
-  return document.querySelector(`#${CUSTOM_LOCATION_TEXT}`)
-}
-
-const getLocationElement = () => {
-  return document.querySelector(`#${CUSTOM_LOCATION_WRAPPER}`)
-}
-
-const injectPopup = (popup, location) => {
-
-  if (getLocationElement()) {
-    updateLocationElement(location)
-    return
-  }
-
-  if (!popup) {
-    console.error('no popup found');
-  }
-
-  createLocationElement(popup.querySelector(".calender-item-details-wrapper"), location)
-}
-
-const htmlLocationElement = (location) => {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'gap-sm flex items-center';const getScheduleElement = (e) => {
     return e.target.closest(SCHEDULE_SELECTOR);
 }
 
@@ -97,20 +46,21 @@ const injectPopup = (popup, location) => {
 
     createLocationElement(popup.querySelector(".calender-item-details-wrapper"), location)
 }
-  wrapper.id = CUSTOM_LOCATION_WRAPPER
-  wrapper.innerHTML = `
+
+const htmlLocationElement = (location) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'gap-sm flex items-center';
+    wrapper.id = CUSTOM_LOCATION_WRAPPER
+    wrapper.innerHTML = `
     <span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-        fill="none" viewBox="0 0 24 24" aria-hidden="true" focusable="false"
-        class="fill-current antialiased" shape-rendering="geometricPrecision">
-        <path
-          d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m6 8H6q-.824 0-1.412-.587A1.93 1.93 0 0 1 4 18v-.8q0-.85.438-1.562.437-.713 1.162-1.088a14.8 14.8 0 0 1 3.15-1.163A13.8 13.8 0 0 1 12 13q1.65 0 3.25.387 1.6.388 3.15 1.163.724.375 1.163 1.087Q20 16.35 20 17.2v.8q0 .824-.587 1.413A1.93 1.93 0 0 1 18 20M6 18h12v-.8a.973.973 0 0 0-.5-.85q-1.35-.675-2.725-1.012a11.6 11.6 0 0 0-5.55 0Q7.85 15.675 6.5 16.35a.97.97 0 0 0-.5.85zm6-8q.825 0 1.412-.588Q14 8.826 14 8q0-.824-.588-1.412A1.93 1.93 0 0 0 12 6q-.825 0-1.412.588A1.93 1.93 0 0 0 10 8q0 .825.588 1.412Q11.175 10 12 10">
-        </path>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" 
+        viewBox="0 -960 960 960" fill="${location == NO_LOCATION_ERROR ? ERROR_COLOR : '#FFFFFF'}" >
+        <path 
+        d="M240-80q-33 0-56.5-23.5T160-160v-480q0-56 34-98t86-56v-86h120v80h160v-80h120v86q52 14 86 56t34 98v480q0 33-23.5 56.5T720-80H240Zm0-80h480v-480q0-33-23.5-56.5T640-720H320q-33 0-56.5 23.5T240-640v480Zm340-160h80v-160H300v80h280v80ZM480-440Z"/>
       </svg>
     </span>
     <div>
       <p class="font-body-md ${location == NO_LOCATION_ERROR ? ERROR_TEXT_CLASS : ''}" id=${CUSTOM_LOCATION_TEXT} >${location}</p>
-    </div>
-  `;
-  return wrapper;
+    </div>`;
+    return wrapper;
 }
