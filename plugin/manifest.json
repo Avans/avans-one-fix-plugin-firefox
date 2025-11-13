@@ -8,7 +8,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "NotDetective-AOF-1-1",
+      "id": "{17eee933-6b74-4783-b0dc-30df3292c566}",
       "data_collection_permissions": {
         "required": ["websiteActivity", "websiteContent"],
         "optional": []
