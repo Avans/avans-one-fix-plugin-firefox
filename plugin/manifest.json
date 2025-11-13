@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Avans One fix",
-  "version": "1.0",
-  "description": "Fixes the annoying problems with lessons",
+  "name": "Avans One fix (AOF)",
+  "version": "1.1",
+  "description": "Fixes frustrating UI issues in Avans One! Shows full lesson names and lets you open lesson details by clicking any agenda item. Essential quality-of-life updates.",
   "icons": {
     "48": "content/avans-logo.png"
   },
